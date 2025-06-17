@@ -1,4 +1,4 @@
-# FedAdapt: RL training for FedAdapt agent
+# SplitRLC: RL training for the agent
 
 We provide the configration and source code of training the RL agent in our paper. If you want to reproduce the RL training results or train the RL agent based on your own devices, please refer to the RL design in our paper.
 
@@ -20,7 +20,7 @@ rl_gamma = 0.9             # discount factor
 rl_b = 100				   # Batchsize
 rl_lr = 0.0003             # parameters for Adam optimizer
 rl_betas = (0.9, 0.999)
-iteration = {'192.168.0.14' : 5, '192.168.0.15' : 5, '192.168.0.25': 50, '192.168.0.36': 5, '192.168.0.29': 5}  # infer times for each device
+iteration = {'192.168.110.30' : 5, '192.168.110.31' : 5, '192.168.110.32': 50, '192.168.110.33': 5, '192.168.110.34': 5}  # infer times for each device
 
 random = True
 random_seed = 0
