@@ -1,16 +1,17 @@
-## SplitRLC: Adaptive Offloading with Sample-Efficient Reinforcement learning for Federated Split Learning
+## SplitRLC: Adaptive model Splitting with Sample-Efficient Reinforcement learning for Federated Split Learning
 
 ### About the research
 
 In this study, we develop an effective FSL framework called SplitRLC to mitigate the impact of computing heterogeneity and adapt to different network bandwidth techniques. It enables flexible partitioning and distributed computing of DNN models in dynamic IoT environments, enhancing FL training efficiency.
 
 
-![FSL_DPI350](https://github.com/user-attachments/assets/868859df-d6b9-4185-af3e-7bd753d6932b)
+![FSL](https://github.com/user-attachments/assets/cebf9947-6501-40ca-8c08-ce2656be5623)
 
 
-To accelerate the training process of federated learning, SplitRLC uses a novel RL method to dynamically determine which layer of deep neural network (DNN) should be offloaded to each device on the server. This RL training incorporates an auxiliary module following the  homology to address sample scarcity by enhancing exploration. Specifically, we predict future states in the latent space via a forward prediction dynamics model (trained using real trajectories to predict future states based on current states and actions) in RL, and then predict previous states via a backward dynamics model to form a cycle. In this way, we can generate a large number of virtual state-action transitions for feature representation training by augmenting actions with self-supervised cycle consistency constraints. Note that this design does not rely on real supervised data and can generate rich virtual trajectories to improve data efficiency. By applying this approach, SplitRLC can greatly facilitate FSL in providing intelligent services in resource-constrained IoT environments with heterogeneous devices and dynamic networks.
 
-![framework](https://github.com/user-attachments/assets/53b70a6d-f6cc-469e-ac46-2a5a1d78cdf4)
+To accelerate the training process of federated learning, SplitRLC uses a novel RL method to dynamically determine which layer of deep neural network (DNN) should be offloaded to each device on the server. Specifically, we propose SplitRLC, a novel RL-based adaptive splitting scheme that generates optimal SPs for the DNNs of each device in resource-constrained real-world FL settings. This design operates without relying on real supervised data and is capable of generating diverse virtual state-action pairs to enhance sample efficiency. Specifically, in RL we predict future states using a transition model, which is trained on real state-action pairs to forecast future states based on current states and actions. We then employ a backward transition model to predict previous states, forming a trajectory cycle. Building on this, numerous virtual state-action pairs can be generated for training state representations, with correctness ensured by cycle consistency constraints. Furthermore, the reliability-aware filtering mechanism utilizes ensemble model consensus to adaptively filter low-reliability virtual samples during training. By reducing RL's dependency on real state samples, this approach effectively generates optimal FL splitting strategies for resource-constrained IoT deployments.
+
+![framework (1)](https://github.com/user-attachments/assets/837f973f-a3dd-4a09-873d-890ad42668ca)
 
 
 The SplitRLC running on each client comprises three modules, namely: 1) Preprocessor; 2) Trained RL agent, and 3) Postprocessor. After completing an FL round (Round $t-1$), the preprocessor gathers device information, encompassing computational capabilities and network bandwidth, while also normalizing training time per iteration. The trained RL agent generates the offloading action after obtaining the observation (referred to as state). $\text{Section III-C}$ further discusses the training process of the RL agent. The post-processor uses the output of the trained RL model to assign offloading strategies to the devices in each group, ensuring they all follow the same action. This action determines which DNN model layer to split, providing a flexible and dynamic offloading method for FSL. Clearly, the trained RL agent is essential to this framework.
