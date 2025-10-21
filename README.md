@@ -60,3 +60,22 @@ To test the code:
 - Run FL training using SplitRLC: please follow instructions in `FL_training` folder.
 - Run RL training for SplitRLC agent: please follow instructions in `RL_training` folder.
 
+
+## Entry Scripts for Reproducibility
+
+
+To reproduce the SplitRLC experiments in a real IoT testbed, separate scripts must be run on the server and each client device.
+
+### Server
+Run the following script on the edge server first:
+```bash
+python FL_training/Server.py
+
+The server waits for all clients to connect before starting the federated split learning process.
+
+### Client
+Run the following script on each IoT client device:
+
+python FL_training/Client.py
+
+Each client automatically connects to the server and executes the FL rounds according to the RL-generated offloading strategy.
