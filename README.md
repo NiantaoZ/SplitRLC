@@ -70,12 +70,12 @@ To reproduce the SplitRLC experiments in a real IoT testbed, separate scripts mu
 Run the following script on the edge server first:
 ```bash
 python FL_training/Server.py
-
+```
 The server waits for all clients to connect before starting the federated split learning process.
 
 ### Client
 Run the following script on each IoT client device:
-
+```bash
 python FL_training/Client.py
-
+```
 Each client automatically connects to the server and executes the FL rounds according to the RL-generated offloading strategy.
